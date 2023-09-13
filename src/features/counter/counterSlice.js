@@ -1,17 +1,16 @@
-const initialState = {
-  items: [],
-};
+import { createSlice } from "@reduxjs/toolkit";
 
-function counterReducer(state = initialState, action) {
-  switch (action.type) {
-    case "count/increment":
-      return {
-        ...state,
-        items: state.items.concat(state.items.length + 1),
-      };
-    default:
-      return state;
-  }
-}
+const slice = createSlice({
+    name: 'counter',
+    initialState: { items: [] },
+    reducers: {
+        increment: state => {
+            console.log("Current state.items length %s", state.items.length);
+            console.log("Updating state.items length to %s", state.items.length + 1);
+            state.items.push(state.items.length + 1);
+        }
+    }
+});
 
-export default counterReducer;
+export const { increment } = slice.actions;
+export default slice.reducer
